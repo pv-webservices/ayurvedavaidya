@@ -35,4 +35,5 @@ This is a reference-based implementation, not a pixel-identical reproduction: ge
 - Supply approved team information, verify the source-design patient quotations and obtain appropriate publication consent.
 - Supply actual article content and approved legal/privacy/disclaimer pages. Supporting pages still contain existing placeholders.
 - Confirm social destinations before adding social links. Unverified numerical claims were not added.
+- Confirm or replace the newly added fourth testimonial sample before publication; testimonial names, quotations and consent remain client-owned content.
 - Review the reference-based appearance and authorize deployment separately.

@@ -19,6 +19,7 @@ const stories = [
   { quote: 'AyurvedaVaidya.com helped me regain my energy and balance naturally. Truly life-changing!', name: 'Priya Sharma', city: 'Bengaluru', initials: 'PS' },
   { quote: 'The personalized diet and yoga plan made a huge difference in my health. Highly recommended!', name: 'Rahul Mehta', city: 'Mumbai', initials: 'RM' },
   { quote: 'Authentic, compassionate and professional. I feel healthier and happier every day.', name: 'Anita Kapoor', city: 'Delhi', initials: 'AK' },
+  { quote: 'The thoughtful wellness guidance helped me build a calmer and more balanced daily routine.', name: 'Meera Iyer', city: 'Chennai', initials: 'MI' },
 ]
 const posts = [
   ['5 Ayurvedic Herbs for a Stronger Immune System', 'article-ayurveda.webp', 'Mar 10, 2024', '5 min read'],
@@ -54,7 +55,7 @@ function Philosophy() {
       <Reveal className="philosophy-copy"><Eyebrow>Our philosophy</Eyebrow><h2 id="philosophy-title">Rooted in Tradition.<br/>Designed for Today.</h2><p>At AyurvedaVaidya.com, we bring the timeless wisdom of Ayurveda into modern life. Our approach blends authentic knowledge, personalized guidance and compassionate care to help you achieve lasting wellbeing — naturally.</p><Button to="/about">Our Story</Button></Reveal>
       <Reveal className="philosophy-art" delay={100}><img className="sage-art" src={`${base}reference-sage.webp`} width="864" height="1152" alt="" aria-hidden="true"/><blockquote><span className="quote-open" aria-hidden="true">“</span>“True wellness<br/>is a balance of<br/>body, mind and spirit.”<Flourish/></blockquote></Reveal>
       <Reveal className="principles" delay={180}>{['Authentic Knowledge','Modern Application','Personalized Care','A Healthier Tomorrow'].map((text, i) => <div key={text}><span className="principle-icon"><Icon type={i % 2 ? 'leaf' : 'shield'}/></span><span>{text}</span></div>)}</Reveal>
-    </div><Wave className="philosophy-wave"/>
+    </div>
   </section>
 }
 
@@ -90,8 +91,8 @@ function Experts() {
 
 function Testimonials() {
   const [index,setIndex] = useState(0)
-  return <section className="testimonials paper-surface" aria-labelledby="testimonials-title"><div className="container"><Reveal className="testimonial-head"><div><Eyebrow>Real stories. Real wellbeing.</Eyebrow><h2 id="testimonials-title">What Our Patients Say</h2></div><div className="carousel-controls"><button type="button" aria-label="Previous testimonials" onClick={()=>setIndex(i=>(i+2)%3)}>‹</button><button type="button" aria-label="Next testimonials" onClick={()=>setIndex(i=>(i+1)%3)}>›</button></div></Reveal>
-    <div className="testimonial-grid" aria-live="polite">{stories.map((_,i)=>{const s=stories[(i+index)%3];return <article className="testimonial-card" key={s.name}><p>“{s.quote}”</p><div className="patient"><span className={`patient-avatar avatar-${(i+index)%3}`} aria-hidden="true">{s.initials}</span><span><strong>{s.name}</strong><small>{s.city}</small></span><span className="stars" aria-label="5 out of 5 stars">★★★★★</span></div></article>})}</div>
+  return <section className="testimonials paper-surface" aria-labelledby="testimonials-title"><div className="container"><Reveal className="testimonial-head"><div><Eyebrow>Real stories. Real wellbeing.</Eyebrow><h2 id="testimonials-title">What Our Patients Say</h2></div><div className="carousel-controls"><button type="button" aria-label="Previous testimonials" onClick={()=>setIndex(i=>(i+stories.length-1)%stories.length)}>‹</button><button type="button" aria-label="Next testimonials" onClick={()=>setIndex(i=>(i+1)%stories.length)}>›</button></div></Reveal>
+    <div className="testimonial-grid" aria-live="polite">{stories.map((_,i)=>{const storyIndex=(i+index)%stories.length;const s=stories[storyIndex];return <article className="testimonial-card" key={s.name}><p>“{s.quote}”</p><div className="patient"><span className={`patient-avatar avatar-${storyIndex}`} aria-hidden="true">{s.initials}</span><span><strong>{s.name}</strong><small>{s.city}</small></span><span className="stars" aria-label="5 out of 5 stars">★★★★★</span></div></article>})}</div>
   </div></section>
 }
 

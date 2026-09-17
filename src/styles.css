@@ -57,3 +57,56 @@
 .section{padding:50px 0}.inner-hero{padding:50px 0 60px}.inner-hero h1{font-size:44px}.inner-hero p{font-size:15px}.editorial-grid,.booking-grid{grid-template-columns:1fr;gap:30px}.editorial-note{padding:30px;min-height:260px}.service-band{grid-template-columns:1fr;gap:15px;padding:30px 0}.service-items{grid-column:auto;columns:1}.service-band h2{font-size:33px}.booking-form{padding:22px}.form-row{grid-template-columns:1fr;gap:0}.inner-cards{margin-top:40px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.pillar-grid .reveal,.program-grid .reveal{opacity:1;transform:none}.hero h1 span,.hero-copy>p,.hero-copy>.btn,.trust-row{opacity:1;transform:none}}
+
+/* Reference correction pass: smoother section rhythm, taller cards and four patient stories. */
+.pillars{margin-top:-50px;padding:154px 0 58px;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 25C180 5 350 17 560 20C790 23 955 58 1170 39C1290 28 1375 10 1440 25V1000H0Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 25C180 5 350 17 560 20C790 23 955 58 1170 39C1290 28 1375 10 1440 25V1000H0Z'/%3E%3C/svg%3E");-webkit-mask-size:100% 100%;mask-size:100% 100%}
+.why{min-height:590px;padding:98px 0 81px}
+.landscape{top:0;bottom:0;width:29%;border-radius:55% 0 0 55% / 50% 0 0 50%;object-position:center}
+.programs{padding:6rem 0 7rem}
+.program-card .card-image{aspect-ratio:1.5}
+.program-body{min-height:146px;padding:18px 17px 20px}
+.experts{padding:47px 0 43px}
+.testimonials{padding:6rem 0 7rem}
+.testimonial-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.testimonial-card{min-height:225px;display:flex;flex-direction:column}
+.testimonial-card>p{min-height:78px}
+.testimonial-card .patient{margin-top:auto}
+.avatar-3{background:#7a6b91}
+.articles{padding:3rem 0 6rem}
+.article-card{min-height:268px}
+.article-card .card-image{aspect-ratio:1.5}
+.article-card>div:not(.card-image){min-height:108px;padding:16px 17px 18px}
+
+@media(max-width:1050px){
+  .pillars{margin-top:-42px;padding:128px 0 50px}
+  .why{min-height:455px;padding:72px 0 62px}
+  .landscape{width:29%}
+  .programs{padding:5rem 0 5.5rem}
+  .program-card .card-image{aspect-ratio:1.5}
+  .program-body{min-height:150px}
+  .experts{padding:47px 0 43px}
+  .testimonials{padding:5rem 0 5.5rem}
+  .testimonial-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .testimonial-card{min-height:210px}
+  .testimonial-card>p{min-height:65px}
+  .articles{padding:2.5rem 0 5rem}
+  .article-card .card-image{aspect-ratio:1.6}
+}
+
+@media(max-width:760px){
+  .pillars{margin-top:-34px;padding:110px 0 50px}
+  .why{min-height:0;padding:72px 0 0}
+  .landscape{width:100%}
+  .programs{padding:4rem 0 4.5rem}
+  .program-card .card-image{aspect-ratio:1.5}
+  .program-body{min-height:160px;padding:14px 11px 16px}
+  .experts{padding:47px 0 46px}
+  .testimonials{padding:4.5rem 0 5rem}
+  .testimonial-grid{grid-template-columns:1fr}
+  .testimonial-card{min-height:195px}
+  .testimonial-card>p{min-height:0}
+  .articles{padding:2.5rem 0 4.5rem}
+  .article-card{min-height:0}
+  .article-card .card-image{aspect-ratio:1.7}
+  .article-card>div:not(.card-image){min-height:112px}
+}

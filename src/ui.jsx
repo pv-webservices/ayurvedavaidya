@@ -39,5 +39,9 @@ export function Branch({ className = '' }) {
 }
 export function Flourish() { return <span className="flourish" aria-hidden="true"><span/><Icon/><span/></span> }
 export function Wave({ className = '', variant = 'bottom' }) {
-  return <svg className={`wave ${className}`} viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d={variant === 'hero' ? 'M0 10C150 130 340 5 650 40S1150 145 1440 70V100H0Z' : 'M0 42C240 132 420 3 730 30S1200 138 1440 48V100H0Z'}/></svg>
+  const paths = {
+    hero: 'M0 10C150 130 340 5 650 40S1150 145 1440 70V100H0Z',
+    bottom: 'M0 42C240 132 420 3 730 30S1200 138 1440 48V100H0Z',
+  }
+  return <svg className={`wave ${className}`} viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d={paths[variant] || paths.bottom}/></svg>
 }
