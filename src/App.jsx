@@ -5,7 +5,7 @@ import HomePage from './HomePage'
 import { Arrow, Leaf, Button, Eyebrow } from './ui'
 
 function Logo({footer=false}) {
-  return <Link to="/" className={footer?'brand brand-footer':'brand'} aria-label="AyurvedaVaidya home"><img src={footer?'/images/ayurveda/ayurvedavaidya-logo-transparent.webp':'/images/ayurveda/reference-header-logo.webp'} alt="AyurvedaVaidya.com — Ancient Wisdom. Modern Wellbeing."/></Link>
+  return <Link to="/" className={footer?'brand brand-footer':'brand'} aria-label="AyurvedaVaidya home"><img src="/images/ayurveda/ayurvedavaidya-logo.webp" width="415" height="305" alt="AyurvedaVaidya.com — Ancient Wisdom. Modern Wellbeing."/></Link>
 }
 const NavChevron = () => <svg className="nav-chevron" viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1 5 5 5-5"/></svg>
 

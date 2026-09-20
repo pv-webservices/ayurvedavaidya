@@ -83,7 +83,7 @@ function Programs() {
 function Experts() {
   return <section className="experts forest-surface" aria-labelledby="experts-title"><Branch className="experts-branch"/><div className="container expert-grid">
     <Reveal className="expert-quote"><blockquote>“Healing<br/>begins with<br/>listening.”</blockquote><span>— Our Vaidya</span></Reveal>
-    <Reveal className="expert-portrait"><img src={`${base}reference-clinician.webp`} width="864" height="1152" alt="Illustrative portrait of an Ayurveda clinician" loading="lazy"/></Reveal>
+    <Reveal className="expert-portrait"><img src={`${base}doctor-portrait.webp`} width="760" height="878" alt="Portrait of one of our doctors in a white coat with a stethoscope" loading="lazy"/></Reveal>
     <Reveal className="expert-copy" delay={100}><Eyebrow>Meet our experts</Eyebrow><h2 id="experts-title">Guided by Experience.<br/>Driven by Compassion.</h2><p>Our team of experienced Ayurvedic doctors and wellness experts are dedicated to helping you live a healthier, more balanced life.</p><Button to="/about">Meet Our Team</Button></Reveal>
     <Reveal className="expert-values" delay={180}><div><strong>Personal</strong><span>Care designed around you</span></div><div><strong>Holistic</strong><span>A connected approach</span></div><div><strong>Natural</strong><span>Rooted in Ayurveda</span></div></Reveal>
   </div><Wave/></section>
