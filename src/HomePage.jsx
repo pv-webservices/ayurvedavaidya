@@ -1,111 +1,249 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Arrow, Icon, Button, Eyebrow, Reveal, Branch, Flourish, Wave } from './ui'
-
-const base = '/images/ayurveda/'
-const pillars = [
-  { title: 'Ayurveda', image: 'reference-hero.webp', icon: 'leaf', text: <>Time-tested healing<br/>for modern living.</>, to: 'ayurveda' },
-  { title: 'Diet', image: 'pillar-nutrition.webp', icon: 'bowl', text: <>Nourishment for<br/>a balanced life.</>, to: 'nutrition' },
-  { title: 'Yoga', image: 'pillar-yoga.webp', icon: 'lotus', text: <>Strengthen body.<br/>Calm the mind.</>, to: 'yoga' },
-  { title: 'Wellness', image: 'pillar-mind-body.webp', icon: 'leaf', text: <>Holistic care for<br/>a brighter tomorrow.</>, to: 'mind-body-wellness' },
-]
-const journeys = [
-  ['Detox & Rejuvenation', 'Cleanse. Restore. Renew.', 'program-rejuvenation.webp'],
-  ['Immunity Boost', 'Stronger Today. Healthier Tomorrow.', 'program-preventive.webp'],
-  ['Stress Management', 'Find Calm. Live Better.', 'pillar-yoga.webp'],
-  ['Weight Balance', 'Natural Solutions. Lasting Results.', 'program-metabolic.webp'],
-]
-const stories = [
-  { quote: 'AyurvedaVaidya.com helped me regain my energy and balance naturally. Truly life-changing!', name: 'Priya Sharma', city: 'Bengaluru', initials: 'PS' },
-  { quote: 'The personalized diet and yoga plan made a huge difference in my health. Highly recommended!', name: 'Rahul Mehta', city: 'Mumbai', initials: 'RM' },
-  { quote: 'Authentic, compassionate and professional. I feel healthier and happier every day.', name: 'Anita Kapoor', city: 'Delhi', initials: 'AK' },
-  { quote: 'The thoughtful wellness guidance helped me build a calmer and more balanced daily routine.', name: 'Meera Iyer', city: 'Chennai', initials: 'MI' },
-]
-const posts = [
-  ['5 Ayurvedic Herbs for a Stronger Immune System', 'article-ayurveda.webp', 'Mar 10, 2024', '5 min read'],
-  ['Healthy Eating Made Simple with Ayurveda', 'pillar-nutrition.webp', 'Mar 5, 2024', '4 min read'],
-  ['How Yoga Transforms Your Mind and Body', 'pillar-yoga.webp', 'Feb 26, 2024', '6 min read'],
-]
+import { ArticleCard, ClinicGallery, ContactCTA, ProgramStack, QualificationGrid, Timeline } from './components/Blocks'
+import { CONTACT, DOCTOR_IMAGES, IMAGES, POSTS, PROCESS_IMAGES, QUALIFICATIONS, SERVICES } from './data'
+import { useI18n, usePageTitle } from './i18n'
+import { Counter, Reveal, prefersReducedMotion, useScrollProgress } from './motion'
+import { Button, Eyebrow, Icon, SectionHead } from './ui'
 
 function Hero() {
-  return <section className="hero forest-surface" aria-labelledby="hero-title">
-    <div className="hero-copy"><Eyebrow>Holistic healing for a brighter you</Eyebrow>
-      <h1 id="hero-title">{['Ancient', 'Wisdom.', 'Modern', 'Wellbeing.'].map((line, i) => <span key={line} style={{ '--line': i }}>{line}</span>)}</h1>
-      <p>Personalized Ayurveda, Nutrition, Yoga &amp; Wellness<br className="desktop-break"/> for a Healthier, Happier Life.</p>
-      <Button to="/book-consultation">Book a Consultation</Button>
-      <div className="trust-row">{[['leaf','Natural','Healing'],['lotus','Personalized','Care'],['heart','Holistic','Wellbeing']].map(([type,a,b]) => <div key={a}><Icon type={type}/><span>{a}<br/>{b}</span></div>)}</div>
+  const { t } = useI18n()
+  const ref = useRef(null)
+  useScrollProgress(ref, { mode: 'exit' })
+  return <section ref={ref} className="hero" aria-labelledby="hero-title">
+    <div className="hero-bg" aria-hidden="true"><img src={IMAGES.hero} alt="" fetchPriority="high"/></div>
+    <div className="container hero-inner">
+      <div className="hero-copy">
+        <p className="hero-kicker"><span className="pulse" aria-hidden="true"/>{t('hero.eyebrow')}</p>
+        <h1 id="hero-title">
+          <span className="line"><span>{t('hero.titleA')}</span></span>
+          <span className="line line-accent"><span>{t('hero.titleB')}</span></span>
+        </h1>
+        <p className="hero-lead">{t('hero.lead')}</p>
+        <div className="hero-actions">
+          <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
+          <Button href={CONTACT.phoneHref} variant="glass" icon="phone">{CONTACT.phone}</Button>
+        </div>
+        <dl className="hero-stats">
+          {t('hero.stats').map((s) => <div key={s.label}><dt><Counter to={s.value}/>{s.suffix}</dt><dd>{s.label}</dd></div>)}
+        </dl>
+      </div>
+      <div className="hero-visual">
+        <div className="arch-ring" aria-hidden="true"/>
+        <figure className="arch"><img src={DOCTOR_IMAGES.portrait} width="760" height="878" alt={t('doctor.portraitAlt')}/></figure>
+        <div className="hero-namecard"><strong>{t('doctor.name')}</strong><span>{t('doctor.role')}</span></div>
+        {t('hero.chips').map((chip, i) => <span key={chip} className={`chip chip-${i}`}><Icon name={['shield', 'mind', 'spark'][i]}/>{chip}</span>)}
+      </div>
     </div>
-    <div className="hero-photo">
-      <svg className="hero-art" viewBox="0 0 800 780" preserveAspectRatio="none" aria-hidden="true">
-        <defs><clipPath id="hero-image-clip"><path d="M160-20C-70 230-30 560 310 710C500 800 685 800 820 722V-20Z"/></clipPath></defs>
-        <image href={`${base}reference-hero.webp`} x="0" y="0" width="800" height="780" preserveAspectRatio="xMinYMid slice" clipPath="url(#hero-image-clip)"/>
-        <path className="hero-arc" d="M160-20C-70 230-30 560 310 710C500 800 685 800 820 722"/>
-      </svg>
-      <blockquote className="hero-quote">“Balance<br/>Heals<br/>Everything”<Flourish/></blockquote>
-      <div className="hero-health"><strong>Good Health</strong><span>A natural way of life</span><Icon/></div>
-    </div>
-    <Wave variant="hero"/>
+    <a href="#doctor" className="scroll-cue"><span>{t('hero.scroll')}</span><i aria-hidden="true"/></a>
   </section>
 }
 
-function Philosophy() {
-  return <section className="philosophy paper-surface" aria-labelledby="philosophy-title">
-    <Branch className="philosophy-branch"/>
-    <div className="container philosophy-grid">
-      <Reveal className="philosophy-copy"><Eyebrow>Our philosophy</Eyebrow><h2 id="philosophy-title">Rooted in Tradition.<br/>Designed for Today.</h2><p>At AyurvedaVaidya.com, we bring the timeless wisdom of Ayurveda into modern life. Our approach blends authentic knowledge, personalized guidance and compassionate care to help you achieve lasting wellbeing — naturally.</p><Button to="/about">Our Story</Button></Reveal>
-      <Reveal className="philosophy-art" delay={100}><img className="sage-art" src={`${base}reference-sage.webp`} width="864" height="1152" alt="" aria-hidden="true"/><blockquote><span className="quote-open" aria-hidden="true">“</span>“True wellness<br/>is a balance of<br/>body, mind and spirit.”<Flourish/></blockquote></Reveal>
-      <Reveal className="principles" delay={180}>{['Authentic Knowledge','Modern Application','Personalized Care','A Healthier Tomorrow'].map((text, i) => <div key={text}><span className="principle-icon"><Icon type={i % 2 ? 'leaf' : 'shield'}/></span><span>{text}</span></div>)}</Reveal>
+function CredentialsMarquee() {
+  const { t } = useI18n()
+  const ref = useRef(null)
+  useScrollProgress(ref)
+  const row = (items, key) => [0, 1].map((copy) => <span key={`${key}-${copy}`} className="marquee-set" aria-hidden={copy === 1 || undefined}>
+    {items.map((item) => <span key={item} className="marquee-item">{item}<Icon name="leaf"/></span>)}
+  </span>)
+  return <section ref={ref} className="marquee" aria-label={QUALIFICATIONS.join(', ')}>
+    <div className="marquee-row marquee-a">{row(QUALIFICATIONS, 'q')}</div>
+    <div className="marquee-row marquee-b">{row(t('marquee'), 'd')}</div>
+  </section>
+}
+
+function MeetDoctor() {
+  const { t } = useI18n()
+  const about = t('doctor.about')
+  return <section id="doctor" className="doctor" aria-labelledby="doctor-title">
+    <div className="container doctor-grid">
+      <div className="doctor-media">
+        <Reveal variant="clip" className="doctor-photo">
+          <img src={DOCTOR_IMAGES.desk} width="1035" height="1280" alt={t('doctor.portraitAlt')} loading="lazy"/>
+        </Reveal>
+        <div className="doctor-badge"><Icon name="shield"/><span><strong>{t('intro.badge')}</strong>Pranabhisar Ayurveda Clinic</span></div>
+      </div>
+      <div className="doctor-copy">
+        <Reveal variant="up"><Eyebrow>{t('intro.eyebrow')}</Eyebrow><h2 id="doctor-title">{t('intro.title')}</h2></Reveal>
+        <Reveal variant="up" delay={100}><p className="doctor-lead">{about[0]}</p></Reveal>
+        {about.slice(1).map((para, i) => <Reveal key={para} variant="fade" delay={140 + i * 60}><p>{para}</p></Reveal>)}
+        <h3 className="mini-title">{t('intro.qualTitle')}</h3>
+        <QualificationGrid/>
+        <h3 className="mini-title">{t('intro.journeyTitle')}</h3>
+        <Timeline/>
+        <Button to="/about" variant="green">{t('intro.cta')}</Button>
+      </div>
     </div>
   </section>
 }
 
-function Pillars() {
-  return <section className="pillars forest-surface" aria-labelledby="pillars-title"><div className="container">
-    <Reveal className="section-heading centered"><Eyebrow>A complete approach</Eyebrow><h2 id="pillars-title">Our Wellness Pillars</h2><p>Four paths. One healthier, happier you.</p></Reveal>
-    <div className="pillar-grid">{pillars.map((p,i) => <Reveal key={p.title} delay={i*85}><Link className="pillar-card" to={`/services/${p.to}`}><div className="card-image"><img src={base+p.image} alt="" width="600" height="330" loading="lazy"/></div><div className="pillar-body"><Icon type={p.icon}/><h3>{p.title}</h3><p>{p.text}</p><span>Explore <Arrow/></span></div></Link></Reveal>)}</div>
-  </div></section>
-}
-
-function WhyChoose() {
-  return <section className="why paper-surface" aria-labelledby="why-title"><Branch className="why-branch-top"/><Branch className="why-branch-bottom"/>
-    <div className="container why-grid"><Reveal className="why-copy"><Eyebrow>Why choose us</Eyebrow><h2 id="why-title">More Than Care.<br/>A Healthier Tomorrow.</h2><p>We combine authentic Ayurvedic wisdom with modern scientific understanding to create personalized solutions for your unique journey.</p><Button to="/services">Our Approach</Button></Reveal>
-      <div className="benefit-grid">{[['person','Personalized','Treatment Plans'],['leaf','Natural & Safe','Therapies'],['people','Experienced','Vaidyas & Experts'],['lotus','Holistic Mind–Body','Approach']].map(([icon,a,b],i) => <Reveal key={a} delay={i*80}><div className="benefit"><span><Icon type={icon}/></span><p>{a}<br/>{b}</p></div></Reveal>)}</div>
-    </div><div className="landscape"><img src={`${base}why-choose-us.webp`} alt="Green foothills in the soft light of sunrise" loading="lazy"/><div>Healthy<br/>People<br/>Happier<br/>Worlds<Flourish/></div></div>
+function ServicePanels() {
+  const { t } = useI18n()
+  const [active, setActive] = useState(0)
+  return <section className="services" aria-labelledby="services-title">
+    <div className="container">
+      <Reveal variant="up"><SectionHead id="services-title" eyebrow={t('services.eyebrow')} title={t('services.title')} lead={t('services.lead')} light>
+        <Button to="/services" variant="glass">{t('services.viewAll')}</Button>
+      </SectionHead></Reveal>
+      <div className="panels">
+        {SERVICES.map((s, i) => {
+          const item = t(`services.items.${s.key}`)
+          return <Reveal key={s.key} variant="up" delay={i * 90} className={`panel-wrap ${active === i ? 'is-active' : ''}`}>
+            <Link className="panel" to={`/services/${s.key}`} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}>
+              <img src={s.image} alt="" loading="lazy" width="1200" height="896"/>
+              <span className="panel-shade" aria-hidden="true"/>
+              <span className="panel-num">0{i + 1}</span>
+              <span className="panel-vertical" aria-hidden="true">{item.title}</span>
+              <span className="panel-body">
+                <span className="panel-icon"><Icon name={s.icon}/></span>
+                <span className="panel-title">{item.title}</span>
+                <span className="panel-sub">{item.subtitle}</span>
+                <span className="panel-list">{item.list.slice(0, 4).map((x) => <span key={x}><Icon name="check"/>{x}</span>)}</span>
+                <span className="panel-link">{t('common.explore')} <Icon name="arrow"/></span>
+              </span>
+            </Link>
+          </Reveal>
+        })}
+      </div>
+    </div>
   </section>
 }
 
-function Programs() {
-  return <section className="programs paper-surface" aria-labelledby="programs-title"><div className="container"><Reveal className="heading-row"><div><Eyebrow>Our programs</Eyebrow><h2 id="programs-title">Healing Journeys for Every Need</h2><p>Choose from our specialized programs, thoughtfully designed for your wellbeing.</p></div><Button to="/programs">View All Programs</Button></Reveal>
-    <div className="program-grid">{journeys.map(([title,text,image],i) => <Reveal key={title} delay={i*75}><Link className="program-card" to="/programs"><div className="card-image"><img src={base+image} alt="" loading="lazy" width="600" height="280"/></div><div className="program-body"><h3>{title}</h3><p>{text}</p><span>Learn More <Arrow/></span></div></Link></Reveal>)}</div>
-  </div></section>
+function ConsultationProcess() {
+  const { t } = useI18n()
+  const ref = useRef(null)
+  const [step, setStep] = useState(0)
+  const steps = t('process.steps')
+  const onProgress = useCallback((p) => setStep(Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999))), [steps.length])
+  useScrollProgress(ref, { mode: 'pin', onProgress })
+  return <section ref={ref} className="process" aria-labelledby="process-title" style={{ '--steps': steps.length }}>
+    <div className="process-sticky">
+      <div className="container process-grid">
+        <div className="process-copy">
+          <Eyebrow>{t('process.eyebrow')}</Eyebrow>
+          <h2 id="process-title">{t('process.title')}</h2>
+          <p className="section-lead">{t('process.lead')}</p>
+          <ol className="process-steps">
+            {steps.map((s, i) => <li key={s.title} className={i === step ? 'is-active' : i < step ? 'is-done' : ''} aria-current={i === step ? 'step' : undefined}>
+              <span className="step-num">0{i + 1}</span>
+              <div><h3>{s.title}</h3><p>{s.text}</p></div>
+              <img className="step-thumb" src={PROCESS_IMAGES[i]} alt="" loading="lazy"/>
+            </li>)}
+          </ol>
+          <div className="process-bar" aria-hidden="true"><span/></div>
+        </div>
+        <div className="process-visual" aria-hidden="true">
+          {PROCESS_IMAGES.map((src, i) => <img key={src} src={src} alt="" loading="lazy" className={i === step ? 'is-active' : i < step ? 'is-past' : ''}/>)}
+          <span className="process-count">{t('common.step')} 0{step + 1} <small>/ 0{steps.length}</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
 }
 
-function Experts() {
-  return <section className="experts forest-surface" aria-labelledby="experts-title"><Branch className="experts-branch"/><div className="container expert-grid">
-    <Reveal className="expert-quote"><blockquote>“Healing<br/>begins with<br/>listening.”</blockquote><span>— Our Vaidya</span></Reveal>
-    <Reveal className="expert-portrait"><img src={`${base}doctor-portrait.webp`} width="760" height="878" alt="Portrait of one of our doctors in a white coat with a stethoscope" loading="lazy"/></Reveal>
-    <Reveal className="expert-copy" delay={100}><Eyebrow>Meet our experts</Eyebrow><h2 id="experts-title">Guided by Experience.<br/>Driven by Compassion.</h2><p>Our team of experienced Ayurvedic doctors and wellness experts are dedicated to helping you live a healthier, more balanced life.</p><Button to="/about">Meet Our Team</Button></Reveal>
-    <Reveal className="expert-values" delay={180}><div><strong>Personal</strong><span>Care designed around you</span></div><div><strong>Holistic</strong><span>A connected approach</span></div><div><strong>Natural</strong><span>Rooted in Ayurveda</span></div></Reveal>
-  </div><Wave/></section>
+function ProgramsSection() {
+  const { t } = useI18n()
+  return <section className="programs" aria-labelledby="programs-title">
+    <div className="container stack-grid">
+      <div className="stack-intro">
+        <Reveal variant="left">
+          <SectionHead id="programs-title" eyebrow={t('programs.eyebrow')} title={t('programs.title')} lead={t('programs.lead')}/>
+          <Button to="/programs" variant="green">{t('programs.viewAll')}</Button>
+        </Reveal>
+      </div>
+      <ProgramStack/>
+    </div>
+  </section>
 }
+
+function OnlineConsult() {
+  const { t } = useI18n()
+  const ref = useRef(null)
+  useScrollProgress(ref)
+  return <section ref={ref} className="online" aria-labelledby="online-title">
+    <div className="container online-grid">
+      <div className="online-media"><img src={IMAGES.online} alt="" loading="lazy" width="1200" height="896"/><span className="online-live"><Icon name="video"/>{t('online.eyebrow')}</span></div>
+      <Reveal variant="right" className="online-copy">
+        <Eyebrow>{t('online.eyebrow')}</Eyebrow>
+        <h2 id="online-title">{t('online.title')}</h2>
+        <p className="section-lead">{t('online.lead')}</p>
+        <ul className="check-list">{t('online.points').map((p) => <li key={p}><Icon name="check"/>{p}</li>)}</ul>
+        <div className="btn-row">
+          <Button to="/book-consultation" icon="video">{t('online.cta')}</Button>
+          <Button href={CONTACT.emailHref} variant="outline" icon="mail">{CONTACT.email}</Button>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+}
+
+const AUTOPLAY_MS = 6500
 
 function Testimonials() {
-  const [index,setIndex] = useState(0)
-  return <section className="testimonials paper-surface" aria-labelledby="testimonials-title"><div className="container"><Reveal className="testimonial-head"><div><Eyebrow>Real stories. Real wellbeing.</Eyebrow><h2 id="testimonials-title">What Our Patients Say</h2></div><div className="carousel-controls"><button type="button" aria-label="Previous testimonials" onClick={()=>setIndex(i=>(i+stories.length-1)%stories.length)}>‹</button><button type="button" aria-label="Next testimonials" onClick={()=>setIndex(i=>(i+1)%stories.length)}>›</button></div></Reveal>
-    <div className="testimonial-grid" aria-live="polite">{stories.map((_,i)=>{const storyIndex=(i+index)%stories.length;const s=stories[storyIndex];return <article className="testimonial-card" key={s.name}><p>“{s.quote}”</p><div className="patient"><span className={`patient-avatar avatar-${storyIndex}`} aria-hidden="true">{s.initials}</span><span><strong>{s.name}</strong><small>{s.city}</small></span><span className="stars" aria-label="5 out of 5 stars">★★★★★</span></div></article>})}</div>
-  </div></section>
+  const { t } = useI18n()
+  const items = t('testimonials.items')
+  const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const go = (dir) => setIndex((i) => (i + dir + items.length) % items.length)
+
+  useEffect(() => {
+    if (paused || prefersReducedMotion()) return undefined
+    const id = setTimeout(() => setIndex((i) => (i + 1) % items.length), AUTOPLAY_MS)
+    return () => clearTimeout(id)
+  }, [index, paused, items.length])
+
+  const current = items[index]
+  const initials = (name) => name.split(' ').map((n) => n[0]).join('').slice(0, 2)
+  return <section className="testimonials" aria-labelledby="testimonials-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+    <div className="container testimonial-grid">
+      <Reveal variant="left">
+        <SectionHead id="testimonials-title" eyebrow={t('testimonials.eyebrow')} title={t('testimonials.title')}/>
+        <div className="t-controls">
+          <button type="button" onClick={() => go(-1)} aria-label={t('testimonials.prev')}><Icon name="left"/></button>
+          <span className="t-count">{String(index + 1).padStart(2, '0')} <small>/ {String(items.length).padStart(2, '0')}</small></span>
+          <button type="button" onClick={() => go(1)} aria-label={t('testimonials.next')}><Icon name="right"/></button>
+        </div>
+      </Reveal>
+      <Reveal variant="scale" delay={120} className="t-stage">
+        <Icon name="quote" className="t-quote-mark"/>
+        <figure key={index} className="t-slide" aria-live="polite">
+          <blockquote>{current.quote}</blockquote>
+          <figcaption><span className={`t-avatar t-avatar-${index}`} aria-hidden="true">{initials(current.name)}</span><span><strong>{current.name}</strong><small>{current.city}</small></span><span className="stars" aria-label="5 / 5">★★★★★</span></figcaption>
+        </figure>
+        <div className="t-dots">
+          {items.map((item, i) => <button type="button" key={item.name} className={i === index ? 'is-active' : ''} aria-label={`${t('testimonials.show')} ${i + 1}`} aria-pressed={i === index} onClick={() => setIndex(i)}><span style={{ animationDuration: `${AUTOPLAY_MS}ms`, animationPlayState: paused ? 'paused' : 'running' }}/></button>)}
+        </div>
+      </Reveal>
+    </div>
+  </section>
 }
 
-function Articles() {
-  return <section className="articles paper-surface" aria-labelledby="articles-title"><div className="container"><Reveal className="heading-row"><div><Eyebrow>Insights for a healthier you</Eyebrow><h2 id="articles-title">From Our Blog</h2><p>Explore expert advice, wellness tips and Ayurvedic wisdom.</p></div><Button to="/articles">View All Articles</Button></Reveal>
-    <div className="article-grid">{posts.map(([title,image,date,time],i)=><Reveal key={title} delay={i*85}><Link className="article-card" to="/articles"><div className="card-image"><img src={base+image} alt="" loading="lazy" width="720" height="260"/></div><div><h3>{title}</h3><p className="article-meta">{date}<span>·</span>{time}</p></div></Link></Reveal>)}</div>
-  </div></section>
-}
-
-function ConsultationCTA() {
-  return <section className="consult-cta forest-surface"><Branch className="cta-branch"/><div className="container cta-grid"><Reveal><Eyebrow>Take the first step today</Eyebrow><h2>Your Journey to Better<br/>Health Begins Here.</h2></Reveal><Reveal delay={100}><p>Book a consultation and let our experts<br/>guide you to a healthier, happier you.</p><Button to="/book-consultation">Book a Consultation</Button></Reveal></div><img className="cta-photo" src={`${base}cta-ayurveda.webp`} alt="" aria-hidden="true" loading="lazy"/></section>
+function Journal() {
+  const { t } = useI18n()
+  return <section className="journal" aria-labelledby="journal-title">
+    <div className="container">
+      <Reveal variant="up"><SectionHead id="journal-title" eyebrow={t('journal.eyebrow')} title={t('journal.title')} lead={t('journal.lead')}>
+        <Button to="/articles" variant="outline">{t('journal.viewAll')}</Button>
+      </SectionHead></Reveal>
+      <div className="article-grid">{POSTS.map((post, i) => <ArticleCard key={post.slug} post={post} delay={i * 110}/>)}</div>
+    </div>
+  </section>
 }
 
 export default function HomePage() {
-  return <main id="main-content" className="homepage"><Hero/><Philosophy/><Pillars/><WhyChoose/><Programs/><Experts/><Testimonials/><Articles/><ConsultationCTA/></main>
+  usePageTitle('')
+  return <main id="main-content" className="homepage">
+    <Hero/>
+    <CredentialsMarquee/>
+    <MeetDoctor/>
+    <ServicePanels/>
+    <ConsultationProcess/>
+    <ClinicGallery/>
+    <ProgramsSection/>
+    <OnlineConsult/>
+    <Testimonials/>
+    <Journal/>
+    <ContactCTA/>
+  </main>
 }
+
