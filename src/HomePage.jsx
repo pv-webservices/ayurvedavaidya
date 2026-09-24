@@ -1,17 +1,38 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArticleCard, ClinicGallery, ContactCTA, ProgramStack, QualificationGrid, Timeline } from './components/Blocks'
-import { CONTACT, DOCTOR_IMAGES, IMAGES, POSTS, PROCESS_IMAGES, QUALIFICATIONS, SERVICES } from './data'
+import { CLIENT_AVATARS, CLIENT_WALL, CONTACT, DOCTOR_IMAGES, IMAGES, POSTS, PROCESS_IMAGES, QUALIFICATIONS, SERVICES } from './data'
 import { useI18n, usePageTitle } from './i18n'
-import { Counter, Reveal, prefersReducedMotion, useScrollProgress } from './motion'
+import { Reveal, prefersReducedMotion, useScrollProgress } from './motion'
 import { Button, Eyebrow, Icon, SectionHead } from './ui'
+
+/** One column of the hero photo wall. The set is rendered twice so the CSS drift loops seamlessly. */
+function WallColumn({ photos, index }) {
+  const { t } = useI18n()
+  const alts = t('hero.alts')
+  return <div className={`wall-col wall-col-${index}`}>
+    <div className="wall-track">
+      {[0, 1].map((copy) => <ul key={copy} className="wall-set" aria-hidden={copy === 1 || undefined}>
+        {photos.map((photo, i) => <li key={photo.src} className="wall-tile" style={{ aspectRatio: `${photo.w} / ${photo.h}` }}>
+          <img src={photo.src} width={photo.w} height={photo.h} alt={copy === 1 ? '' : alts[photo.kind]} decoding="async" fetchPriority={i < 2 && copy === 0 ? 'high' : 'low'}/>
+        </li>)}
+      </ul>)}
+    </div>
+  </div>
+}
 
 function Hero() {
   const { t } = useI18n()
   const ref = useRef(null)
   useScrollProgress(ref, { mode: 'exit' })
   return <section ref={ref} className="hero" aria-labelledby="hero-title">
-    <div className="hero-bg" aria-hidden="true"><img src={IMAGES.hero} alt="" fetchPriority="high"/></div>
+    <div className="hero-bg" aria-hidden="true"/>
+    <div className="hero-wall" role="region" aria-label={t('hero.wallLabel')}>
+      <div className="wall-grid">
+        {CLIENT_WALL.map((photos, i) => <WallColumn key={photos[0].src} photos={photos} index={i}/>)}
+      </div>
+    </div>
+    <div className="hero-namecard"><strong>{t('doctor.name')}</strong><span>{t('doctor.role')}</span></div>
     <div className="container hero-inner">
       <div className="hero-copy">
         <p className="hero-kicker"><span className="pulse" aria-hidden="true"/>{t('hero.eyebrow')}</p>
@@ -24,15 +45,10 @@ function Hero() {
           <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
           <Button href={CONTACT.phoneHref} variant="glass" icon="phone">{CONTACT.phone}</Button>
         </div>
-        <dl className="hero-stats">
-          {t('hero.stats').map((s) => <div key={s.label}><dt><Counter to={s.value}/>{s.suffix}</dt><dd>{s.label}</dd></div>)}
-        </dl>
-      </div>
-      <div className="hero-visual">
-        <div className="arch-ring" aria-hidden="true"/>
-        <figure className="arch"><img src={DOCTOR_IMAGES.portrait} width="760" height="878" alt={t('doctor.portraitAlt')}/></figure>
-        <div className="hero-namecard"><strong>{t('doctor.name')}</strong><span>{t('doctor.role')}</span></div>
-        {t('hero.chips').map((chip, i) => <span key={chip} className={`chip chip-${i}`}><Icon name={['shield', 'mind', 'spark'][i]}/>{chip}</span>)}
+        <div className="hero-trust">
+          <span className="trust-faces" aria-hidden="true">{CLIENT_AVATARS.map((src) => <img key={src} src={src} alt="" width="48" height="48"/>)}</span>
+          <span className="trust-copy"><strong>{t('hero.trust')}</strong><small>{t('hero.trustSub')}</small></span>
+        </div>
       </div>
     </div>
     <a href="#doctor" className="scroll-cue"><span>{t('hero.scroll')}</span><i aria-hidden="true"/></a>
@@ -61,7 +77,7 @@ function MeetDoctor() {
         <Reveal variant="clip" className="doctor-photo">
           <img src={DOCTOR_IMAGES.desk} width="1035" height="1280" alt={t('doctor.portraitAlt')} loading="lazy"/>
         </Reveal>
-        <div className="doctor-badge"><Icon name="shield"/><span><strong>{t('intro.badge')}</strong>Pranabhisar Ayurveda Clinic</span></div>
+        <div className="doctor-badge"><Icon name="shield"/><span><strong>{t('intro.badge')}</strong>Ayurveda Clinic</span></div>
       </div>
       <div className="doctor-copy">
         <Reveal variant="up"><Eyebrow>{t('intro.eyebrow')}</Eyebrow><h2 id="doctor-title">{t('intro.title')}</h2></Reveal>

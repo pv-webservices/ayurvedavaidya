@@ -45,6 +45,15 @@ export const GALLERY = [
   { src: DOCTOR_IMAGES.alt, w: 1035, h: 1196 },
 ]
 
+// Real client meetups, academic events and yoga sessions for the homepage hero wall, split into three drifting columns.
+const clientPhoto = (n, w, h, kind) => ({ src: `${IMG}clients/client-${String(n).padStart(2, '0')}.webp`, w, h, kind })
+export const CLIENT_WALL = [
+  [clientPhoto(6, 820, 608, 'meetup'), clientPhoto(9, 592, 820, 'event'), clientPhoto(1, 820, 541, 'meetup'), clientPhoto(14, 820, 615, 'yoga'), clientPhoto(12, 615, 820, 'meetup')],
+  [clientPhoto(2, 820, 737, 'meetup'), clientPhoto(8, 820, 820, 'yoga'), clientPhoto(13, 820, 615, 'meetup'), clientPhoto(11, 820, 546, 'event'), clientPhoto(4, 439, 820, 'meetup')],
+  [clientPhoto(7, 820, 608, 'meetup'), clientPhoto(15, 800, 820, 'event'), clientPhoto(10, 820, 379, 'meetup'), clientPhoto(3, 607, 820, 'meetup'), clientPhoto(16, 820, 615, 'yoga'), clientPhoto(5, 820, 486, 'yoga')],
+]
+export const CLIENT_AVATARS = [6, 12, 2, 7].map((n) => `${IMG}clients/client-${String(n).padStart(2, '0')}.webp`)
+
 export const POSTS = [
   { slug: 'understanding-prakriti', image: `${LEGACY}article-ayurveda.webp`, minutes: 5 },
   { slug: 'balanced-ayurvedic-plate', image: `${LEGACY}article-nutrition.webp`, minutes: 4 },

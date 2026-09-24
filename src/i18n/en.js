@@ -14,7 +14,7 @@ const en = {
   doctor: {
     name: 'Dr. Tejendra Singh',
     headline: 'Ayurvedic Physician · Academician · Wellness Expert',
-    role: 'Director & CMO, Pranabhisar Ayurveda Clinic',
+    role: 'Director & CMO, Ayurveda Clinic',
     portraitAlt: 'Dr. Tejendra Singh, Ayurvedic physician, at his consultation desk',
     qualifications: {
       'BAMS': 'Ayurvedic Medicine & Surgery',
@@ -28,25 +28,23 @@ const en = {
     about: [
       'Dr. Tejendra Singh is an Ayurvedic physician, academician and wellness expert with specialized training in Ayurveda, Clinical Psychology, Nutrition and Integrative Healthcare.',
       'He completed his BAMS and MD (Ayurveda) and is further qualified in MAPC (Clinical Psychology), DNHE, CCIC and CCIM. He is currently pursuing doctoral research (PhD) in Ayurveda.',
-      'He previously served as an Assistant Professor at a university, contributing to Ayurvedic education, clinical training and research. Today, as Director & Chief Medical Officer (CMO) at Pranabhisar Ayurveda Clinic, he oversees holistic wellness programs, Panchakarma therapies, lifestyle management and integrative patient care.',
+      'He previously served as an Assistant Professor at a university, contributing to Ayurvedic education, clinical training and research. Today, as Director & Chief Medical Officer (CMO) at Ayurveda Clinic, he oversees holistic wellness programs, Panchakarma therapies, lifestyle management and integrative patient care.',
       'His work blends authentic Ayurvedic wisdom with modern wellness approaches to support physical, mental and preventive health.',
     ],
     roles: [
       { period: 'Earlier', title: 'Assistant Professor', org: 'University faculty', text: 'Contributed to Ayurvedic education, clinical training and research.' },
-      { period: 'Present', title: 'Director & Chief Medical Officer', org: 'Pranabhisar Ayurveda Clinic', text: 'Oversees holistic wellness programs, Panchakarma therapies, lifestyle management and integrative patient care.' },
+      { period: 'Present', title: 'Director & Chief Medical Officer', org: 'Ayurveda Clinic', text: 'Oversees holistic wellness programs, Panchakarma therapies, lifestyle management and integrative patient care.' },
     ],
   },
   hero: {
     eyebrow: 'Dr. Tejendra Singh · BAMS, MD (Ayu.)',
     titleA: 'Healing begins',
     titleB: 'with listening.',
-    lead: 'Personal Ayurvedic consultations that bring classical Ayurveda, clinical psychology, nutrition and yoga together — guided by a physician, designed around you.',
-    chips: ['MD (Ayurveda)', 'Clinical Psychology', 'PhD Scholar, Ayurveda'],
-    stats: [
-      { value: 7, suffix: '', label: 'Professional qualifications' },
-      { value: 4, suffix: '', label: 'Integrated care disciplines' },
-      { value: 54, suffix: '+', label: 'Personalized consultation services' },
-    ],
+    lead: 'Physician-led Ayurvedic care, built on real conversations with real people.',
+    trust: 'Real clients. Real moments.',
+    trustSub: 'Client meetups, academic events & yoga',
+    wallLabel: 'Moments with clients',
+    alts: { meetup: 'Dr. Tejendra Singh with clients', event: 'Dr. Tejendra Singh at an Ayurveda academic event', yoga: 'Yoga and meditation in nature' },
     scroll: 'Scroll',
   },
   marquee: ['Classical Ayurveda', 'Clinical Psychology', 'Therapeutic Nutrition', 'Yoga & Pranayama', 'Panchakarma Guidance', 'Integrative Healthcare'],
@@ -220,7 +218,7 @@ const en = {
   },
   about: {
     eyebrow: 'About the physician',
-    lead: 'Ayurvedic physician, academician and wellness expert — Director & CMO at Pranabhisar Ayurveda Clinic.',
+    lead: 'Ayurvedic physician, academician and wellness expert — Director & CMO at Ayurveda Clinic.',
     bioTitle: 'Rooted in classical Ayurveda. Informed by modern science.',
     quote: 'Lasting health is built when body, mind and daily life are cared for together.',
     quoteBy: 'Our philosophy of care',

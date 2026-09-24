@@ -14,7 +14,7 @@ const es = {
   doctor: {
     name: 'Dr. Tejendra Singh',
     headline: 'Médico ayurvédico · Académico · Experto en bienestar',
-    role: 'Director y CMO, Pranabhisar Ayurveda Clinic',
+    role: 'Director y CMO, Ayurveda Clinic',
     portraitAlt: 'El Dr. Tejendra Singh, médico ayurvédico, en su escritorio de consulta',
     qualifications: {
       'BAMS': 'Medicina y Cirugía Ayurvédica',
@@ -28,25 +28,23 @@ const es = {
     about: [
       'El Dr. Tejendra Singh es médico ayurvédico, académico y experto en bienestar, con formación especializada en Ayurveda, Psicología Clínica, Nutrición y Salud Integrativa.',
       'Completó su BAMS y su MD (Ayurveda) y cuenta además con las titulaciones MAPC (Psicología Clínica), DNHE, CCIC y CCIM. Actualmente realiza su investigación doctoral (PhD) en Ayurveda.',
-      'Anteriormente fue Profesor Asistente en una universidad, donde contribuyó a la enseñanza del Ayurveda, la formación clínica y la investigación. Hoy, como Director y Director Médico (CMO) de Pranabhisar Ayurveda Clinic, supervisa programas de bienestar holístico, terapias de Panchakarma, gestión del estilo de vida y atención integrativa al paciente.',
+      'Anteriormente fue Profesor Asistente en una universidad, donde contribuyó a la enseñanza del Ayurveda, la formación clínica y la investigación. Hoy, como Director y Director Médico (CMO) de Ayurveda Clinic, supervisa programas de bienestar holístico, terapias de Panchakarma, gestión del estilo de vida y atención integrativa al paciente.',
       'Su trabajo une la auténtica sabiduría ayurvédica con enfoques modernos de bienestar para apoyar la salud física, mental y preventiva.',
     ],
     roles: [
       { period: 'Antes', title: 'Profesor Asistente', org: 'Docencia universitaria', text: 'Contribuyó a la enseñanza del Ayurveda, la formación clínica y la investigación.' },
-      { period: 'Actualidad', title: 'Director y Director Médico (CMO)', org: 'Pranabhisar Ayurveda Clinic', text: 'Supervisa programas de bienestar holístico, terapias de Panchakarma, gestión del estilo de vida y atención integrativa.' },
+      { period: 'Actualidad', title: 'Director y Director Médico (CMO)', org: 'Ayurveda Clinic', text: 'Supervisa programas de bienestar holístico, terapias de Panchakarma, gestión del estilo de vida y atención integrativa.' },
     ],
   },
   hero: {
     eyebrow: 'Dr. Tejendra Singh · BAMS, MD (Ayu.)',
     titleA: 'La sanación empieza',
     titleB: 'escuchando.',
-    lead: 'Consultas ayurvédicas personalizadas que unen el Ayurveda clásico, la psicología clínica, la nutrición y el yoga — guiadas por un médico y diseñadas para usted.',
-    chips: ['MD (Ayurveda)', 'Psicología Clínica', 'Doctorando en Ayurveda'],
-    stats: [
-      { value: 7, suffix: '', label: 'Titulaciones profesionales' },
-      { value: 4, suffix: '', label: 'Disciplinas de cuidado integradas' },
-      { value: 54, suffix: '+', label: 'Servicios de consulta personalizados' },
-    ],
+    lead: 'Atención ayurvédica guiada por un médico, construida sobre conversaciones reales con personas reales.',
+    trust: 'Clientes reales. Momentos reales.',
+    trustSub: 'Encuentros con clientes, eventos académicos y yoga',
+    wallLabel: 'Momentos con clientes',
+    alts: { meetup: 'El Dr. Tejendra Singh con clientes', event: 'El Dr. Tejendra Singh en un evento académico de Ayurveda', yoga: 'Yoga y meditación en la naturaleza' },
     scroll: 'Desplazar',
   },
   marquee: ['Ayurveda clásico', 'Psicología clínica', 'Nutrición terapéutica', 'Yoga y Pranayama', 'Orientación en Panchakarma', 'Salud integrativa'],
@@ -220,7 +218,7 @@ const es = {
   },
   about: {
     eyebrow: 'Sobre el médico',
-    lead: 'Médico ayurvédico, académico y experto en bienestar — Director y CMO de Pranabhisar Ayurveda Clinic.',
+    lead: 'Médico ayurvédico, académico y experto en bienestar — Director y CMO de Ayurveda Clinic.',
     bioTitle: 'Arraigado en el Ayurveda clásico. Guiado por la ciencia moderna.',
     quote: 'La salud duradera se construye cuando cuerpo, mente y vida diaria se cuidan juntos.',
     quoteBy: 'Nuestra filosofía de cuidado',
