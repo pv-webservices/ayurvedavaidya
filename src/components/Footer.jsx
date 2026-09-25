@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CONTACT, SERVICES, buildMailto } from '../data'
+import { CONTACT, SERVICES } from '../data'
 import { useI18n } from '../i18n'
 import { Icon } from '../ui'
 import { Logo } from './Header'
@@ -8,16 +7,6 @@ import { LanguageInline } from './LanguageSwitcher'
 
 export default function Footer() {
   const { t } = useI18n()
-  const [status, setStatus] = useState('')
-
-  const subscribe = (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    if (!form.checkValidity()) { form.reportValidity(); return }
-    const email = new FormData(form).get('email')
-    window.location.href = buildMailto(t('footer.newsletterSubject'), [`${t('footer.newsletterSubject')}: ${email}`])
-    setStatus(t('footer.newsletterStatus'))
-  }
 
   const quick = [['home', '/'], ['about', '/about'], ['programs', '/programs'], ['journal', '/articles'], ['contact', '/book-consultation']]
 
@@ -43,14 +32,6 @@ export default function Footer() {
         <a href={CONTACT.phoneHref}><Icon name="phone"/>{CONTACT.phone}</a>
         <a href={CONTACT.emailHref}><Icon name="mail"/>{CONTACT.email}</a>
         <p className="footer-clinic"><Icon name="pin"/>{t('contact.clinicValue')}</p>
-        <h3 className="footer-news-title">{t('footer.newsletter')}</h3>
-        <p>{t('footer.newsletterText')}</p>
-        <form className="newsletter" onSubmit={subscribe} noValidate>
-          <label className="sr-only" htmlFor="newsletter-email">{t('footer.emailPlaceholder')}</label>
-          <input id="newsletter-email" name="email" type="email" autoComplete="email" placeholder={t('footer.emailPlaceholder')} required/>
-          <button type="submit" aria-label={t('footer.subscribe')}><Icon name="arrow"/></button>
-        </form>
-        <p className="newsletter-status" role="status">{status}</p>
       </div>
     </div>
     <div className="footer-bottom">

@@ -21,7 +21,7 @@ Create an optimized production build with `npm run build`.
 
 ## Launch notes
 
-- The consultation form and newsletter open the visitor's email app with a pre-filled message to ayurvedavaidya@gmail.com. Connect a form/booking service if submissions should arrive without an email client.
+- The consultation form posts to [FormSubmit](https://formsubmit.co) (`FORM_ENDPOINT` in `src/data.js`), which emails each enquiry to ayurvedavaidya6@gmail.com. The first submission sends an activation email to that inbox — click **Activate Form** once, and every later enquiry is delivered.
 - Testimonials are carried over from the previous design; replace them with consented, verified patient content before launch.
 - Confirm consent from the patients shown in the clinic gallery (`public/images/v2/clinic-visit-*.webp`).
 - Supply professionally reviewed Privacy Policy, Terms and Medical/Wellness Disclaimer copy.

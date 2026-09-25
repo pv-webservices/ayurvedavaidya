@@ -4,8 +4,8 @@ export const IMG = '/images/v2/'
 const LEGACY = '/images/ayurveda/'
 
 export const CONTACT = {
-  email: 'ayurvedavaidya@gmail.com',
-  emailHref: 'mailto:ayurvedavaidya@gmail.com',
+  email: 'ayurvedavaidya6@gmail.com',
+  emailHref: 'mailto:ayurvedavaidya6@gmail.com',
   phone: '+91 78959 11809',
   phoneHref: 'tel:+917895911809',
 }
@@ -68,8 +68,6 @@ export const IMAGES = {
   branch: `${LEGACY}reference-branch.webp`,
 }
 
-/** Builds a mailto: URL with an encoded subject and body. */
-export function buildMailto(subject, lines) {
-  const body = lines.filter(Boolean).join('\n')
-  return `${CONTACT.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-}
+// FormSubmit (formsubmit.co) relays enquiry form submissions to the clinic inbox. The very first
+// submission sends an activation email to this address; enquiries are delivered once it is confirmed.
+export const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT.email}`

@@ -90,6 +90,14 @@
 .booking-form input:focus, .booking-form select:focus, .booking-form textarea:focus { outline: none; border-color: var(--green-500); box-shadow: 0 0 0 4px rgba(47, 122, 62, 0.14); }
 .booking-form input:user-invalid, .booking-form select:user-invalid { border-color: #b3452e; }
 .booking-form textarea { resize: vertical; }
+.phone-field { display: flex; gap: 8px; }
+.phone-field input { flex: 1; min-width: 0; }
+.country-picker { position: relative; flex: none; display: flex; border-radius: 14px; transition: box-shadow 0.3s; }
+.country-picker-value { display: flex; align-items: center; gap: 6px; height: 100%; padding: 0 12px 0 14px; border-radius: 14px; border: 1px solid var(--line); background: #fff; font-size: 15px; font-weight: 600; color: var(--ink); white-space: nowrap; transition: border-color 0.3s; }
+.country-picker-value .icon { width: 16px; height: 16px; color: var(--muted); }
+.booking-form .country-picker select { position: absolute; inset: 0; opacity: 0; padding: 0; cursor: pointer; }
+.country-picker:focus-within { box-shadow: 0 0 0 4px rgba(47, 122, 62, 0.14); }
+.country-picker:focus-within .country-picker-value { border-color: var(--green-500); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .booking-form .consent { flex-direction: row; align-items: flex-start; gap: 12px; font-weight: 500; color: var(--muted); }
 .booking-form .consent input { width: 20px; height: 20px; flex: none; margin-top: 2px; accent-color: var(--green-600); }
