@@ -127,7 +127,7 @@ export function ProgramStack({ headingLevel = 'h3' }) {
           <Heading>{item.title}</Heading>
           <p>{item.text}</p>
           <ul>{item.points.map((pt) => <li key={pt}><Icon name="check"/>{pt}</li>)}</ul>
-          <Button to="/book-consultation" variant="outline">{t('programs.enquire')}</Button>
+          <Button to="/book-consultation/" variant="outline">{t('programs.enquire')}</Button>
         </div>
       </article>
     })}
@@ -145,7 +145,7 @@ export function ContactCTA() {
         <Eyebrow light>{t('cta.eyebrow')}</Eyebrow>
         <h2 id="cta-title">{t('cta.title')}</h2>
         <p>{t('cta.lead')}</p>
-        <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
+        <Button to="/book-consultation/" icon="calendar">{t('nav.book')}</Button>
       </Reveal>
       <Reveal variant="right" delay={150} className="cta-contacts">
         <a href={CONTACT.phoneHref} className="cta-contact tilt" {...tilt}><span className="cta-icon"><Icon name="phone"/></span><span><small>{t('cta.callLabel')}</small><strong>{CONTACT.phone}</strong></span></a>
@@ -159,7 +159,7 @@ export function ArticleCard({ post, delay = 0 }) {
   const { t } = useI18n()
   const copy = t(`journal.posts.${post.slug}`)
   return <Reveal variant="up" delay={delay} className="article-reveal">
-    <Link className="article-card tilt" to={`/articles/${post.slug}`} {...tilt}>
+    <Link className="article-card tilt" to={`/articles/${post.slug}/`} {...tilt}>
       <div className="article-media"><img src={post.image} alt="" loading="lazy" width="720" height="480"/></div>
       <div className="article-body">
         <span className="tag">{copy.category}</span>

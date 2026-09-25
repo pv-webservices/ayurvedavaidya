@@ -32,14 +32,14 @@ export function ArticlePage() {
     <section className="section article-page">
       <div className="container article-layout">
         <article className="article-content">
-          <Link to="/articles" className="back-link"><Icon name="left"/>{t('journal.back')}</Link>
+          <Link to="/articles/" className="back-link"><Icon name="left"/>{t('journal.back')}</Link>
           <p className="article-excerpt">{copy.excerpt}</p>
           {copy.body.map((para, i) => <Reveal key={para} variant="up" delay={i * 60}><p>{para}</p></Reveal>)}
           <p className="article-disclaimer"><Icon name="shield"/>{t('journal.disclaimer')}</p>
         </article>
         <aside className="article-aside">
           <h2 className="mini-title">{t('journal.eyebrow')}</h2>
-          {others.map((p) => <Link key={p.slug} to={`/articles/${p.slug}`} className="aside-post">
+          {others.map((p) => <Link key={p.slug} to={`/articles/${p.slug}/`} className="aside-post">
             <img src={p.image} alt="" loading="lazy" width="720" height="480"/>
             <span><small>{t(`journal.posts.${p.slug}.category`)}</small>{t(`journal.posts.${p.slug}.title`)}</span>
           </Link>)}

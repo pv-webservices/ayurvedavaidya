@@ -128,9 +128,16 @@
 
 /* Legal */
 .legal-body { max-width: 780px; }
-.legal-body h2 { font-size: 36px; margin: 10px 0 14px; }
+.legal-body h2 { font-size: 28px; margin: 10px 0 12px; }
 .legal-body p { margin-bottom: 16px; color: var(--muted); }
 .legal-body a { color: var(--green-600); font-weight: 700; }
+.legal-section { margin-bottom: 30px; }
+.legal-list { margin: 0 0 16px; padding-left: 22px; list-style: disc; color: var(--muted); }
+.legal-list li { margin-bottom: 8px; }
+.legal-list li::marker { color: var(--gold-700); }
+.legal-updated { font: 700 11px/1.4 var(--body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-700) !important; margin-bottom: 26px !important; }
+.legal-note { padding: 14px 18px; border-left: 3px solid var(--gold-700); background: rgba(0, 0, 0, 0.03); border-radius: 6px; }
+.legal-related { padding-top: 22px; border-top: 1px solid var(--line); }
 
 /* ==========================================================
    Responsive — pages

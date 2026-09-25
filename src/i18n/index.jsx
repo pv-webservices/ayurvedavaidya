@@ -1,4 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { getRouteMeta } from '../seo'
 import en from './en'
 import es from './es'
 import ru from './ru'
@@ -55,11 +57,13 @@ export function useI18n() {
   return context
 }
 
-/** Sets the document title for the current route in the active language. */
+/** Sets the document title for the current route: the SEO title in English, otherwise the translated page title. */
 export function usePageTitle(title) {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
+  const { pathname } = useLocation()
   useEffect(() => {
     const brand = t('meta.brand')
-    document.title = title ? `${title} | ${brand}` : `${brand} | ${t('meta.homeTitle')}`
-  }, [title, t])
+    const seoTitle = lang === DEFAULT_LANGUAGE ? getRouteMeta(pathname)?.title : null
+    document.title = seoTitle ?? (title ? `${title} | ${brand}` : `${brand} | ${t('meta.homeTitle')}`)
+  }, [title, t, lang, pathname])
 }

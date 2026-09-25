@@ -64,8 +64,6 @@ export const IMAGES = {
   hero: `${IMG}hero-clinic.webp`,
   cta: `${IMG}cta-botanical.webp`,
   online: `${IMG}svc-online.webp`,
-  forest: `${LEGACY}reference-forest.webp`,
-  branch: `${LEGACY}reference-branch.webp`,
 }
 
 // FormSubmit (formsubmit.co) relays enquiry form submissions to the clinic inbox. The very first

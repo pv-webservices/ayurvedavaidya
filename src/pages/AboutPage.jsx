@@ -18,7 +18,7 @@ export default function AboutPage() {
           <p className="profile-quals">{QUALIFICATIONS.join(' · ')}</p>
           <p className="profile-lead">{t('about.lead')}</p>
           <div className="btn-row">
-            <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
+            <Button to="/book-consultation/" icon="calendar">{t('nav.book')}</Button>
             <Button href={CONTACT.phoneHref} variant="glass" icon="phone">{CONTACT.phone}</Button>
           </div>
         </div>

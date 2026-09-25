@@ -42,7 +42,7 @@ function Hero() {
         </h1>
         <p className="hero-lead">{t('hero.lead')}</p>
         <div className="hero-actions">
-          <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
+          <Button to="/book-consultation/" icon="calendar">{t('nav.book')}</Button>
           <Button href={CONTACT.phoneHref} variant="glass" icon="phone">{CONTACT.phone}</Button>
         </div>
         <div className="hero-trust">
@@ -87,7 +87,7 @@ function MeetDoctor() {
         <QualificationGrid/>
         <h3 className="mini-title">{t('intro.journeyTitle')}</h3>
         <Timeline/>
-        <Button to="/about" variant="green">{t('intro.cta')}</Button>
+        <Button to="/about/" variant="green">{t('intro.cta')}</Button>
       </div>
     </div>
   </section>
@@ -99,13 +99,13 @@ function ServicePanels() {
   return <section className="services" aria-labelledby="services-title">
     <div className="container">
       <Reveal variant="up"><SectionHead id="services-title" eyebrow={t('services.eyebrow')} title={t('services.title')} lead={t('services.lead')} light>
-        <Button to="/services" variant="glass">{t('services.viewAll')}</Button>
+        <Button to="/services/" variant="glass">{t('services.viewAll')}</Button>
       </SectionHead></Reveal>
       <div className="panels">
         {SERVICES.map((s, i) => {
           const item = t(`services.items.${s.key}`)
           return <Reveal key={s.key} variant="up" delay={i * 90} className={`panel-wrap ${active === i ? 'is-active' : ''}`}>
-            <Link className="panel" to={`/services/${s.key}`} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}>
+            <Link className="panel" to={`/services/${s.key}/`} onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)}>
               <img src={s.image} alt="" loading="lazy" width="1200" height="896"/>
               <span className="panel-shade" aria-hidden="true"/>
               <span className="panel-num">0{i + 1}</span>
@@ -164,7 +164,7 @@ function ProgramsSection() {
       <div className="stack-intro">
         <Reveal variant="left">
           <SectionHead id="programs-title" eyebrow={t('programs.eyebrow')} title={t('programs.title')} lead={t('programs.lead')}/>
-          <Button to="/programs" variant="green">{t('programs.viewAll')}</Button>
+          <Button to="/programs/" variant="green">{t('programs.viewAll')}</Button>
         </Reveal>
       </div>
       <ProgramStack/>
@@ -185,7 +185,7 @@ function OnlineConsult() {
         <p className="section-lead">{t('online.lead')}</p>
         <ul className="check-list">{t('online.points').map((p) => <li key={p}><Icon name="check"/>{p}</li>)}</ul>
         <div className="btn-row">
-          <Button to="/book-consultation" icon="video">{t('online.cta')}</Button>
+          <Button to="/book-consultation/" icon="video">{t('online.cta')}</Button>
           <Button href={CONTACT.emailHref} variant="outline" icon="mail">{CONTACT.email}</Button>
         </div>
       </Reveal>
@@ -239,7 +239,7 @@ function Journal() {
   return <section className="journal" aria-labelledby="journal-title">
     <div className="container">
       <Reveal variant="up"><SectionHead id="journal-title" eyebrow={t('journal.eyebrow')} title={t('journal.title')} lead={t('journal.lead')}>
-        <Button to="/articles" variant="outline">{t('journal.viewAll')}</Button>
+        <Button to="/articles/" variant="outline">{t('journal.viewAll')}</Button>
       </SectionHead></Reveal>
       <div className="article-grid">{POSTS.map((post, i) => <ArticleCard key={post.slug} post={post} delay={i * 110}/>)}</div>
     </div>

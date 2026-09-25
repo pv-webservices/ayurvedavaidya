@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Footer, { MobileActionBar } from './components/Footer'
 import Header from './components/Header'
+import RouteHead from './components/RouteHead'
 import { SERVICES } from './data'
 import HomePage from './HomePage'
 import AboutPage from './pages/AboutPage'
@@ -27,6 +28,7 @@ function ScrollManager() {
 export default function App() {
   return <>
     <ScrollManager/>
+    <RouteHead/>
     <Header/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>

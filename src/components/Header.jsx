@@ -11,7 +11,7 @@ export function Logo({ className = '' }) {
   </Link>
 }
 
-const LINKS = [['home', '/'], ['about', '/about'], ['services', '/services'], ['programs', '/programs'], ['journal', '/articles'], ['contact', '/book-consultation']]
+const LINKS = [['home', '/'], ['about', '/about/'], ['services', '/services/'], ['programs', '/programs/'], ['journal', '/articles/'], ['contact', '/book-consultation/']]
 
 function useDrawerFocusTrap(open, drawerRef, onClose) {
   useEffect(() => {
@@ -38,11 +38,11 @@ function MegaMenu({ open, t }) {
       <Icon name="leaf"/>
       <span>{t('nav.megaTag')}</span>
       <strong>{t('nav.megaTitle')}</strong>
-      <Link to="/services">{t('nav.allServices')} <Icon name="arrow"/></Link>
+      <Link to="/services/">{t('nav.allServices')} <Icon name="arrow"/></Link>
     </div>
     {SERVICES.map((s) => <div key={s.key} className="mega-col">
-      <Link className="mega-title" to={`/services/${s.key}`}><Icon name={s.icon}/>{t(`services.items.${s.key}.title`)}</Link>
-      {t(`services.items.${s.key}.list`).slice(0, 4).map((item) => <Link key={item} to={`/services/${s.key}`}>{item}</Link>)}
+      <Link className="mega-title" to={`/services/${s.key}/`}><Icon name={s.icon}/>{t(`services.items.${s.key}.title`)}</Link>
+      {t(`services.items.${s.key}.list`).slice(0, 4).map((item) => <Link key={item} to={`/services/${s.key}/`}>{item}</Link>)}
     </div>)}
   </div>
 }
@@ -95,7 +95,7 @@ export default function Header() {
         <div className="header-actions">
           <LanguageMenu/>
           <a className="header-phone" href={CONTACT.phoneHref} aria-label={`${t('nav.call')} ${CONTACT.phone}`}><Icon name="phone"/></a>
-          <Button to="/book-consultation" variant="green" className="header-cta" icon="calendar">{t('nav.book')}</Button>
+          <Button to="/book-consultation/" variant="green" className="header-cta" icon="calendar">{t('nav.book')}</Button>
           <button ref={menuButtonRef} type="button" className="menu-toggle" aria-label={t('nav.open')} aria-expanded={open} onClick={() => setOpen(true)}><span/><span/><span/></button>
         </div>
       </div>
@@ -109,8 +109,8 @@ export default function Header() {
           ? <div key={key} className="drawer-group" style={{ '--i': i }}>
               <button type="button" aria-expanded={mobileServices} onClick={() => setMobileServices((v) => !v)}>{t('nav.services')}<Icon name="chevron" className="nav-chevron"/></button>
               <div className={`drawer-sub ${mobileServices ? 'open' : ''}`} inert={!mobileServices}>
-                <Link to="/services">{t('nav.allServices')}</Link>
-                {SERVICES.map((s) => <Link key={s.key} to={`/services/${s.key}`}>{t(`services.items.${s.key}.title`)}</Link>)}
+                <Link to="/services/">{t('nav.allServices')}</Link>
+                {SERVICES.map((s) => <Link key={s.key} to={`/services/${s.key}/`}>{t(`services.items.${s.key}.title`)}</Link>)}
               </div>
             </div>
           : <NavLink key={key} to={to} end={to === '/'} style={{ '--i': i }}>{t(`nav.${key}`)}</NavLink>)}
@@ -120,7 +120,7 @@ export default function Header() {
         <a href={CONTACT.phoneHref}><Icon name="phone"/>{CONTACT.phone}</a>
         <a href={CONTACT.emailHref}><Icon name="mail"/>{CONTACT.email}</a>
       </div>
-      <Button to="/book-consultation" icon="calendar">{t('nav.book')}</Button>
+      <Button to="/book-consultation/" icon="calendar">{t('nav.book')}</Button>
     </div>
     {open && <button type="button" className="drawer-scrim" onClick={closeRef.current} aria-label={t('nav.close')}/>}
   </>

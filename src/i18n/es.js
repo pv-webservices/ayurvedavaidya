@@ -239,10 +239,13 @@ const es = {
   legal: {
     eyebrow: 'Información del sitio web',
     privacy: 'Política de privacidad', terms: 'Condiciones de uso', disclaimer: 'Aviso médico y de bienestar',
-    draft: 'Página en borrador. El contenido final debe facilitarse y revisarse antes del lanzamiento.',
-    reviewTitle: 'Revisión de contenido pendiente',
-    reviewText: 'Esta página no contiene intencionadamente términos legales inventados. Incorpore el texto final revisado por un profesional antes de publicarla.',
     disclaimerText: 'La información de este sitio web tiene fines educativos y de bienestar generales y no sustituye el consejo médico individual, el diagnóstico ni la atención de emergencia.',
+    updatedLabel: 'Última actualización',
+    updated: '25 de septiembre de 2026',
+    contactTitle: 'Contacto',
+    contactText: 'Puede enviar sus preguntas sobre esta página, o solicitudes sobre sus datos, a:',
+    related: 'Páginas relacionadas',
+    englishOnly: 'Este texto legal está disponible solo en inglés. La versión en inglés es la versión vinculante.',
   },
   notFound: { title: 'Página no encontrada', text: 'Es posible que la página que busca se haya movido o ya no exista.', home: 'Volver al inicio' },
 }

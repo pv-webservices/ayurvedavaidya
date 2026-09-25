@@ -8,7 +8,7 @@ import { LanguageInline } from './LanguageSwitcher'
 export default function Footer() {
   const { t } = useI18n()
 
-  const quick = [['home', '/'], ['about', '/about'], ['programs', '/programs'], ['journal', '/articles'], ['contact', '/book-consultation']]
+  const quick = [['home', '/'], ['about', '/about/'], ['programs', '/programs/'], ['journal', '/articles/'], ['contact', '/book-consultation/']]
 
   return <footer className="site-footer">
     <div className="footer-glow" aria-hidden="true"/>
@@ -24,8 +24,8 @@ export default function Footer() {
       </nav>
       <nav aria-label={t('footer.services')}>
         <h3>{t('footer.services')}</h3>
-        {SERVICES.map((s) => <Link key={s.key} to={`/services/${s.key}`}>{t(`services.items.${s.key}.title`)}</Link>)}
-        <Link to="/book-consultation">{t('nav.book')}</Link>
+        {SERVICES.map((s) => <Link key={s.key} to={`/services/${s.key}/`}>{t(`services.items.${s.key}.title`)}</Link>)}
+        <Link to="/book-consultation/">{t('nav.book')}</Link>
       </nav>
       <div className="footer-contact">
         <h3>{t('footer.contact')}</h3>
@@ -37,7 +37,7 @@ export default function Footer() {
     <div className="footer-bottom">
       <div className="container">
         <span>© {new Date().getFullYear()} AyurvedaVaidya.com — {t('footer.rights')}</span>
-        <span className="footer-legal"><Link to="/privacy">{t('legal.privacy')}</Link><Link to="/terms">{t('legal.terms')}</Link><Link to="/disclaimer">{t('legal.disclaimer')}</Link></span>
+        <span className="footer-legal"><Link to="/privacy/">{t('legal.privacy')}</Link><Link to="/terms/">{t('legal.terms')}</Link><Link to="/disclaimer/">{t('legal.disclaimer')}</Link></span>
         <span className="footer-tagline"><Icon name="leaf"/>{t('meta.tagline')}</span>
       </div>
     </div>
@@ -49,6 +49,6 @@ export function MobileActionBar() {
   return <div className="mobile-bar">
     <a href={CONTACT.phoneHref}><Icon name="phone"/>{t('nav.call')}</a>
     <a href={CONTACT.emailHref}><Icon name="mail"/>Email</a>
-    <Link to="/book-consultation" className="mobile-bar-book"><Icon name="calendar"/>{t('nav.book')}</Link>
+    <Link to="/book-consultation/" className="mobile-bar-book"><Icon name="calendar"/>{t('nav.book')}</Link>
   </div>
 }

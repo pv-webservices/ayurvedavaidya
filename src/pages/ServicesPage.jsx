@@ -20,7 +20,7 @@ function ServiceBand({ service, index, headingLevel = 'h2' }) {
       <p className="section-lead">{item.short}</p>
       <h3 className="mini-title">{t('services.covers')}</h3>
       <ul className="service-items">{item.list.map((x) => <li key={x}><Icon name="check"/>{x}</li>)}</ul>
-      <Button to="/book-consultation" icon="calendar">{t('services.discuss')}</Button>
+      <Button to="/book-consultation/" icon="calendar">{t('services.discuss')}</Button>
     </Reveal>
   </article>
 }
@@ -46,7 +46,7 @@ export default function ServicesPage({ single }) {
         <Reveal variant="up"><h2 className="principles-title">{t('services.others')}</h2></Reveal>
         <div className="mini-card-grid">
           {others.map((s, i) => <Reveal key={s.key} variant="up" delay={i * 90}>
-            <Link to={`/services/${s.key}`} className="mini-card tilt" {...tilt}>
+            <Link to={`/services/${s.key}/`} className="mini-card tilt" {...tilt}>
               <img src={s.image} alt="" loading="lazy" width="1200" height="896"/>
               <span className="mini-card-body"><Icon name={s.icon}/><strong>{t(`services.items.${s.key}.title`)}</strong><small>{t(`services.items.${s.key}.subtitle`)}</small><Icon name="arrow" className="mini-card-arrow"/></span>
             </Link>
